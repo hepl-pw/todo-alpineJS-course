@@ -4,7 +4,7 @@ window.data = function () {
 	return {
 		todos: [],
 		newTodoTitle: '',
-		addTodo() {
+		addTodo () {
 			if (this.newTodoTitle.trim()) {
 				this.todos.push({
 					id: Date.now(),
@@ -16,6 +16,9 @@ window.data = function () {
 		},
 		removeTodo (todo) {
 			this.todos.splice(this.todos.indexOf(todo), 1)
+		},
+		toggleCompleted (todo) {
+			todo.completed = !todo.completed
 		}
 	}
 }
