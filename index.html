@@ -52,26 +52,25 @@
 		</ul>
 	</section>
 	<footer class="footer" x-show="todos.length">
-		<span class="todo-count"><strong x-text="activeTodosCount"></strong> <span
+		<span class="todo-count"><strong x-text="activeTodosCount"></strong><span
 				x-text="activeTodosCount === 1 ? 'item' : 'items'"></span> left</span>
 		<ul class="filters">
 			<li>
 				<a href="#/"
-				   :class="{selected:filter==='all'}"
+				   :class="{selected: filter==='all'}"
 				   @click.prevent="filter='all'">All</a>
 			</li>
 			<li>
 				<a href="#/active"
-				   :class="{selected:filter==='active'}"
+				   :class="{selected: filter==='active'}"
 				   @click.prevent="filter='active'">Active</a>
 			</li>
 			<li>
 				<a href="#/completed"
-				   :class="{selected:filter==='completed'}"
+				   :class="{selected: filter==='completed'}"
 				   @click.prevent="filter='completed'">Completed</a>
 			</li>
 		</ul>
-		<!-- Hidden if no completed items are left ↓ -->
 		<button @click="todos = activeTodos"
 				class="clear-completed"
 				x-show="completedTodosCount">Clear completed
@@ -80,13 +79,9 @@
 </section>
 <footer class="info">
 	<p>Double-click to edit a todo</p>
-	<!-- Remove the below line ↓ -->
-	<p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-	<!-- Change this out with your name and url ↓ -->
-	<p>Created by <a href="http://todomvc.com">you</a></p>
+	<p>Created by <a href="http://todomvc.com">Dominique Vilain</a></p>
 	<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 </footer>
-<!-- Scripts here. Don't remove ↓ -->
 <script src="node_modules/todomvc-common/base.js"></script>
 <script src="js/app.js"></script>
 </body>
