@@ -2,6 +2,7 @@ import 'alpinejs'
 
 window.data = function () {
 	return {
+
 		filter: 'all',
 		todos: [],
 		todoEditing: null,
@@ -44,15 +45,15 @@ window.data = function () {
 		toggleCompleted (todo) {
 			todo.completed = !todo.completed
 		},
-		startEditing (todo, tick, field) {
+		startEditing (todo, tick) {
 			todo.cachedTitle = todo.title
 			if (this.todoEditing) {
 				delete this.todoEditing.editing
 			}
 			this.todoEditing = todo
 			todo.editing = true
-			console.log(field)
-			//tick(() => field.focus())
+
+			tick(() => document.getElementById(todo.id).focus())
 		},
 		validateEditingTodo (todo) {
 			if (todo.title.trim()) {

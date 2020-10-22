@@ -36,7 +36,7 @@
 							   class="toggle"
 							   type="checkbox">
 						<label x-text="todo.title"
-							   @dblclick="startEditing(todo, $nextTick, $refs[todo.id])"></label>
+							   @dblclick="startEditing(todo, $nextTick)"></label>
 						<button @click="removeTodo(todo)"
 								class="destroy"></button>
 					</div>
@@ -44,7 +44,7 @@
 						   @keyup.escape="cancelEditingTodo(todo)"
 						   x-model="todo.title"
 						   class="edit"
-						   x-ref="todo.id">
+						   :id="todo.id">
 				</li>
 			</template>
 		</ul>
