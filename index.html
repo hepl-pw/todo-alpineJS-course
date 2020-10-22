@@ -9,7 +9,8 @@
 </head>
 <body>
 <section class="todoapp"
-		 x-data="data()">
+		 x-data="data()"
+		 x-init="loadTodos()">
 	<header class="header">
 		<h1>todos</h1>
 		<input @keyup.enter="addTodo()"
@@ -44,6 +45,7 @@
 						   @keyup.escape="cancelEditingTodo(todo)"
 						   x-model="todo.title"
 						   class="edit"
+						   @blur="cancelEditingTodo(todo)"
 						   :id="todo.id">
 				</li>
 			</template>

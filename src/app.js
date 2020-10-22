@@ -1,8 +1,9 @@
 import 'alpinejs'
+import store from './store'
 
 window.data = function () {
 	return {
-
+		...store,
 		filter: 'all',
 		todos: [],
 		todoEditing: null,
@@ -29,6 +30,10 @@ window.data = function () {
 		get allTodosComplete () {
 			return this.completedTodosCount === this.todos.length
 		},
+		loadTodos () {
+			let todos = this.fetch()
+			todos.forEach(todo => this.todos.push(todo))
+		},
 		addTodo () {
 			if (this.newTodoTitle.trim()) {
 				this.todos.push({
@@ -38,12 +43,15 @@ window.data = function () {
 				})
 				this.newTodoTitle = ''
 			}
+			this.save(this.todos)
 		},
 		removeTodo (todo) {
 			this.todos.splice(this.todos.indexOf(todo), 1)
+			this.save(this.todos)
 		},
 		toggleCompleted (todo) {
 			todo.completed = !todo.completed
+			this.save(this.todos)
 		},
 		startEditing (todo, tick) {
 			todo.cachedTitle = todo.title
@@ -61,6 +69,7 @@ window.data = function () {
 			} else {
 				this.removeTodo(todo)
 			}
+			this.save(this.todos)
 		},
 		cancelEditingTodo (todo) {
 			todo.title = todo.cachedTitle
@@ -69,7 +78,8 @@ window.data = function () {
 		},
 		toggleAllTodosComplete () {
 			let allTodosComplete = this.allTodosComplete
-			this.todos.forEach(todo => todo.completed = ! allTodosComplete)
+			this.todos.forEach(todo => todo.completed = !allTodosComplete)
+			this.save(this.todos)
 		}
 	}
 }
