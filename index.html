@@ -15,7 +15,7 @@
 				<input class="new-todo" placeholder="What needs to be done?" autofocus>
 			</header>
 			<!-- This section should be hidden by default and shown when there are todos -->
-			<section x-show="display"
+			<section x-show="todos.length"
 					class="main">
 				<input id="toggle-all" class="toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
@@ -41,7 +41,7 @@
 				</ul>
 			</section>
 			<!-- This footer should hidden by default and shown when there are todos -->
-			<footer class="footer">
+			<footer x-show="todos.length" class="footer">
 				<!-- This should be `0 items left` by default -->
 				<span class="todo-count"><strong>0</strong> item left</span>
 				<!-- Remove this if you don't implement routing -->
