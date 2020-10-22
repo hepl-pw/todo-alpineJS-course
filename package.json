@@ -1,12 +1,14 @@
 {
   "private": true,
   "dependencies": {
+    "alpinejs": "^2.7.1",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "laravel-mix": "^5.0.7"
+    "laravel-mix": "^5.0.7",
+    "vue-template-compiler": "^2.6.12"
   },
   "scripts": {
     "dev": "npm run development",
