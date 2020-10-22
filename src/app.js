@@ -5,12 +5,14 @@ window.data = function () {
 		todos: [],
 		newTodoTitle: '',
 		addTodo () {
-			this.todos.push({
-				id: Date.now(),
-				title: this.newTodoTitle,
-				completed: false
-			})
-			this.newTodoTitle = ''
+			if(this.newTodoTitle.trim()){
+				this.todos.push({
+					id: Date.now(),
+					title: this.newTodoTitle,
+					completed: false
+				})
+				this.newTodoTitle = ''
+			}
 		}
 	}
 }
