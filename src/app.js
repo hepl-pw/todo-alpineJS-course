@@ -25,6 +25,9 @@ window.data = function () {
 				completed: this.completedTodos
 			}[this.filter]
 		},
+		get allTodosComplete () {
+			return this.completedTodosCount === this.todos.length
+		},
 		addTodo () {
 			if (this.newTodoTitle.trim()) {
 				this.todos.push({
@@ -62,6 +65,10 @@ window.data = function () {
 			todo.title = todo.cachedTitle
 			delete todo.cachedTitle
 			delete todo.editing
+		},
+		toggleAllTodosComplete () {
+			let allTodosComplete = this.allTodosComplete
+			this.todos.forEach(todo => todo.completed = ! allTodosComplete)
 		}
 	}
 }
