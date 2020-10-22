@@ -4,6 +4,18 @@ window.data = function () {
 	return {
 		todos: [],
 		newTodoTitle: '',
+		get activeTodos () {
+			return this.todos.filter(todo => !todo.completed)
+		},
+		get activeTodosCount () {
+			return this.activeTodos.length
+		},
+		get completedTodos () {
+			return this.todos.filter(todo => todo.completed)
+		},
+		get completedTodosCount () {
+			return this.activeTodos.length
+		},
 		addTodo () {
 			if (this.newTodoTitle.trim()) {
 				this.todos.push({
@@ -19,12 +31,6 @@ window.data = function () {
 		},
 		toggleCompleted (todo) {
 			todo.completed = !todo.completed
-		},
-		get activeTodos () {
-			return this.todos.filter(todo => !todo.completed)
-		},
-		get activeTodosCount () {
-			return this.activeTodos.length
 		}
 	}
 }
