@@ -2,6 +2,7 @@ import 'alpinejs'
 
 window.data = function () {
 	return {
+		filter: 'all',
 		todos: [],
 		newTodoTitle: '',
 		get activeTodos () {
@@ -15,6 +16,13 @@ window.data = function () {
 		},
 		get completedTodosCount () {
 			return this.activeTodos.length
+		},
+		get filteredTodos () {
+			return {
+				all: this.todos,
+				active: this.activeTodos,
+				completed: this.completedTodos
+			}[this.filter]
 		},
 		addTodo () {
 			if (this.newTodoTitle.trim()) {
