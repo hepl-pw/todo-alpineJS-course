@@ -48,15 +48,17 @@
 		<ul class="filters">
 			<li>
 				<a href="#/"
-				   class="selected"
+				   :class="{selected:filter==='all'}"
 				   @click.prevent="filter='all'">All</a>
 			</li>
 			<li>
 				<a href="#/active"
+				   :class="{selected:filter==='active'}"
 				   @click.prevent="filter='active'">Active</a>
 			</li>
 			<li>
 				<a href="#/completed"
+				   :class="{selected:filter==='completed'}"
 				   @click.prevent="filter='completed'">Completed</a>
 			</li>
 		</ul>
