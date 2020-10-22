@@ -28,23 +28,29 @@
 			<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
 			<template x-for="todo in filteredTodos"
 					  :key="todo.id">
-				<li :class="{completed : todo.completed}">
+				<li :class="{completed : todo.completed, editing: todo.editing}">
 					<div class="view">
 						<input @click="toggleCompleted(todo)"
 							   x-model="todo.completed"
 							   class="toggle"
 							   type="checkbox">
-						<label x-text="todo.title"></label>
+						<label x-text="todo.title"
+							   @dblclick="startEditing(todo, $nextTick, $refs[todo.id])"></label>
 						<button @click="removeTodo(todo)"
 								class="destroy"></button>
 					</div>
-					<input class="edit" value="Rule the web">
+					<input @keyup.enter="validateEditingTodo(todo)"
+						   @keyup.escape="cancelEditingTodo(todo)"
+						   x-model="todo.title"
+						   class="edit"
+						   x-ref="todo.id">
 				</li>
 			</template>
 		</ul>
 	</section>
 	<footer class="footer" x-show="todos.length">
-		<span class="todo-count"><strong x-text="activeTodosCount"></strong> <span x-text="activeTodosCount === 1 ? 'item' : 'items'"></span> left</span>
+		<span class="todo-count"><strong x-text="activeTodosCount"></strong> <span
+				x-text="activeTodosCount === 1 ? 'item' : 'items'"></span> left</span>
 		<ul class="filters">
 			<li>
 				<a href="#/"
@@ -64,8 +70,9 @@
 		</ul>
 		<!-- Hidden if no completed items are left ↓ -->
 		<button @click="todos = activeTodos"
-				x-show="completedTodosCount"
-				class="clear-completed">Clear completed</button>
+				class="clear-completed"
+				x-show="completedTodosCount">Clear completed
+		</button>
 	</footer>
 </section>
 <footer class="info">

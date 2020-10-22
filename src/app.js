@@ -4,6 +4,7 @@ window.data = function () {
 	return {
 		filter: 'all',
 		todos: [],
+		todoEditing: null,
 		newTodoTitle: '',
 		get activeTodos () {
 			return this.todos.filter(todo => !todo.completed)
@@ -39,6 +40,28 @@ window.data = function () {
 		},
 		toggleCompleted (todo) {
 			todo.completed = !todo.completed
+		},
+		startEditing (todo, tick, field) {
+			todo.cachedTitle = todo.title
+			if (this.todoEditing) {
+				delete this.todoEditing.editing
+			}
+			this.todoEditing = todo
+			todo.editing = true
+			console.log(field)
+			//tick(() => field.focus())
+		},
+		validateEditingTodo (todo) {
+			if (todo.title.trim()) {
+				delete todo.editing
+			} else {
+				this.removeTodo(todo)
+			}
+		},
+		cancelEditingTodo (todo) {
+			todo.title = todo.cachedTitle
+			delete todo.cachedTitle
+			delete todo.editing
 		}
 	}
 }
