@@ -39,8 +39,6 @@ window.data = function () {
 			return this.completedTodosCount === this.todos.length
 		},
 
-
-
 		loadTodos () {
 			let todos = this.fetch()
 			todos.forEach(todo => this.todos.push(todo))
@@ -54,8 +52,8 @@ window.data = function () {
 					completed: false
 				})
 				this.newTodoTitle = ''
+				this.save(this.todos)
 			}
-			this.save(this.todos)
 		},
 
 		removeTodo (todo) {
